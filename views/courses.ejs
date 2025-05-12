@@ -1,0 +1,16 @@
+<!-- Display course content -->
+<h2>Our Offered Courses</h2>
+<div class="course-list">
+    <% offeredCourses.forEach(course=> { %>
+        <div class="course-item">
+            <h3>
+                <%= course.title %>
+            </h3>
+            <p>
+                <%= course.description %>
+            </p>
+            <span>$ <%= course.cost %> </span>
+            <!-- <a href="/courses/<%= course.id %>">View Course</a> -->
+        </div>
+        <% }) %>
+</div>

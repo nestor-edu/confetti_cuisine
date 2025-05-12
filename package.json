@@ -2,17 +2,23 @@
   "name": "confetti_cuisine",
   "version": "1.0.0",
   "description": "Site for booking classes for cooking. Handle router, views and assets",
-  "type": "module",
+  "type": "commonjs",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon main.js"
   },
   "keywords": [
-    "Node",
-    "Router",
-    "Views",
-    "Assets"
+    "Application for a cooking class site with Node Stack and Express",
+    "Express JS implementation",
+    "Route Handlers for Express",
+    "EJS Templates",
+    "Views and layouts for EJS",
+    "Assets and Static Files",
+    "Middleware for Express",
+    "HTTP Status Codes",
+    "Error Handling in Express",
+    "Form Handling in Express"
   ],
   "author": "Nestor Eduardo",
   "license": "ISC",

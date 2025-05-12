@@ -1,54 +1,33 @@
-import { createServer } from 'http'
-import { get, post, handle } from './router.js'
-import { html, png, jpg, css, js } from './contentType.js'
-import { getFile } from './utils.js'
+// Main file for the Confetti Cuisine application
+// This file sets up the server, routes, and static files for the application
+// It uses Express.js for routing and EJS for templating
+const express = require('express');
+const app = express();
+const layouts = require('express-ejs-layouts');
 
-const port = process.env.PORT || 3000;
+const errorController = require('./controllers/ErrorController');
+const homeController = require('./controllers/HomeController');
 
-get("/", (req, res) => {
-    res.writeHead(200, html)
-    getFile("views/index.html", res)
+app.set('port', process.env.PORT || 3000);
+app.set("view engine", 'ejs');
+
+app.use(layouts)
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static('public'));
+
+app.listen(app.get('port'), () => {
+    console.log(`Server is running on port ${app.get('port')}`);
 })
 
-get("/courses.html", (req, res) => {
-    res.writeHead(200, html)
-    getFile("views/courses.html", res)
+app.get('/', (req, res) => {
+    res.send("Welcome to Confetti Cuisine");
 })
 
-get("/contact.html", (req, res) => {
-    res.writeHead(200, html)
-    getFile("views/contact.html", res)
-})
+app.get('/courses', homeController.showCourses);
+app.get('/contact', homeController.showSignUp);
+app.post('/contact', homeController.responseSignUp);
 
-post("/", (req, res) => {
-    res.writeHead(200, html)
-    getFile("views/thanks.html", res)
-})
-
-get("/graph.png", (req, res) => {
-    res.writeHead(200, png)
-    getFile("public/images/graph.png", res)
-})
-
-get("/people.jpg", (req, res) => {
-    res.writeHead(200, jpg)
-    getFile("public/images/people.jpg", res)
-})
-
-get("/product.jpg", (req, res) => {
-    res.writeHead(200, jpg)
-    getFile("public/images/product.jpg", res)
-})
-
-get("/confetti_cuisine.css", (req, res) => {
-    res.writeHead(200, css)
-    getFile("public/css/confetti_cuisine.css", res)
-})
-
-get("/confetti_cuisine.js", (req, res) => {
-    res.writeHead(200, js)
-    getFile("public/js/confetti_cuisine.js", res)
-})
-
-createServer(handle).listen(port)
-console.log(`The server is listening on port number: ${port}`)
+app.use(errorController.pageNotFound);
+app.use(errorController.internalServerError);
