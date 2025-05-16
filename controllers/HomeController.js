@@ -22,17 +22,17 @@ const courses = [
     }
 ]
 
-exports.showCourses = (req, res) => {
+export const showCourses = (req, res) => {
     res.render("courses", {
         offeredCourses: courses,
         pageTitle: "Courses",
     });
 }
 
-exports.showSignUp = (req, res) => {
+export const showSignUp = (req, res) => {
     res.render("contact");
 }
 
-exports.responseSignUp  = (req, res) => {
+export const responseSignUp  = (req, res) => {
     res.render("thanks");
 }
