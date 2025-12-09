@@ -6,7 +6,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon main.js"
+    "start": "node main.js"
   },
   "keywords": [
     "Application for a cooking class site with Node Stack and Express",
@@ -27,6 +27,7 @@
     "express": "^5.1.0",
     "express-ejs-layouts": "^2.5.1",
     "http-status-codes": "^2.3.0",
-    "mongodb": "^6.16.0"
+    "mongodb": "^6.16.0",
+    "mongoose": "^8.15.0"
   }
 }

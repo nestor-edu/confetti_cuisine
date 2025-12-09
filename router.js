@@ -6,7 +6,7 @@ const routes = {
     "POST": { },
 }
 
-export function handle(req, res) {
+function handle(req, res) {
     try {
         routes[req.method][req.url](req, res)
     } catch (error) {
@@ -15,11 +15,11 @@ export function handle(req, res) {
     }
 }
 
-export function get(url, callback) {
+function get(url, callback) {
     routes["GET"][url] = callback
 }
 
-export function post(url, callback) {
+function post(url, callback) {
     routes["POST"][url] = callback
 }
 
